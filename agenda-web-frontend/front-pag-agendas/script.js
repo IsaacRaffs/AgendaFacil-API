@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:8000/agenda/'
+const API_URL = 'https://agendafacil-api.onrender.com/'
 
 function main(){
     console.log('main funcionando...')
