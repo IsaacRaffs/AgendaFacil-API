@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['agendafacil-api.onrender.com']
 #
-CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:5500']
+CORS_ALLOWED_ORIGINS = ['https://agendafacil-api.vercel.app']
 
 # Application definition
 
