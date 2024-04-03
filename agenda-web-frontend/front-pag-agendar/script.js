@@ -1,4 +1,4 @@
-const API_URL = 'https://agendafacil-api.onrender.com/'
+const API_URL = 'https://agendafacil-api.onrender.com/agenda/'
 
 function main(){
     console.log('main funcionando...')
@@ -30,6 +30,9 @@ async function salvar_agendamento(e){
     const response = await fetch(API_URL, init)
     if (response.status===201){
         cx_nome.value = ''
+        cx_email.value = ''
+        cx_data.value = ''
+        cx_telefon.value = ''
         console.log(response.status)
         const agendamento = await response.json()
         adicionar_agendamento_lista(agendamento)
