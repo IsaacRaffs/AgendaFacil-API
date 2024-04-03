@@ -1,4 +1,4 @@
-const API_URL = 'https://agendafacil-api.onrender.com/'
+const API_URL = 'https://agendafacil-api.onrender.com/agenda/'
 
 function main(){
     console.log('main funcionando...')
