@@ -32,7 +32,7 @@ async function salvar_agendamento(e){
         cx_nome.value = ''
         cx_email.value = ''
         cx_data.value = ''
-        cx_telefon.value = ''
+        cx_n_cll.value = ''
         console.log(response.status)
         const agendamento = await response.json()
         adicionar_agendamento_lista(agendamento)
