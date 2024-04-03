@@ -1,4 +1,4 @@
-body{
+body {
     background-color: rgb(255, 255, 195);
     margin: 0;
 }
@@ -8,13 +8,21 @@ div{
     border-radius: 30px;
     width: 80vh;
     height: 50vh;
+    letter-spacing: 2px;
+}
+a, div {
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content: center;
-    letter-spacing: 2px;
+    margin: auto; 
 }
-h1{
+button{
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 150);
+}
+h1 {
     color: white;
     background-color: rgb(255, 219, 17);
     height: 60px;
@@ -24,10 +32,13 @@ h1{
     font-size: 7vh;
     top: 0;
 }
-tr, td{
+
+tr, td {
     color: cadetblue;
 }
-input{
+
+input {
+    width: 200px;
     border-radius: 50px;
     border-bottom: 5px;
 }
