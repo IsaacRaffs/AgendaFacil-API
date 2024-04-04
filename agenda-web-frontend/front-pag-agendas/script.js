@@ -1,10 +1,79 @@
 const API_URL = 'https://agendafacil-api.onrender.com/agenda/'
 
+const cx_nome = document.getElementById('cx-nome')
+const cx_email = document.getElementById('cx-email')
+const cx_data = document.getElementById('cx-data')
+const cx_n_cll = document.getElementById('cx-n_cll')
+
+const btn_cadastro = document.getElementById('btncadastro')
+
+
+
 function main(){
     console.log('main funcionando...')
         
     carregar_agendas()
 }
+async function iniciarModificarAgenda(id) {
+    let response = await fetch(`${API_URL}${id}`)
+    console.log(response.status)
+    if (response.status === 200) {
+
+        const agenda = await response.json()
+
+        const nome = agenda.nome 
+        const email = agenda.email
+        const n_cll = agenda.n_cll
+        const data  = agenda.data
+
+        cx_nome.value = nome
+        cx_email.value = email
+        cx_data.value = data
+        cx_n_cll.value = n_cll
+
+        
+        btn_cadastro.innerText = 'Atualizar'
+        btn_cadastro.value = 'Atualizar Agenda'
+
+        btn_cadastro.setAttribute('onclick', `modificarAgenda(${id})`)
+
+    }
+    else {
+        alert(`Erro ${response.status}`)
+    }
+}
+
+async function modificarAgenda(id) {
+    const nome = cx_nome.value
+    const email = cx_email.value
+    const data = cx_data.value
+    const n_cll = cx_n_cll.value
+
+
+    const dados = { nome, email, data, n_cll }
+    console.log(dados)
+    alert('sucesso')
+
+    const options = {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados),
+    }
+
+
+    await fetch(`${API_URL}${id}`, options).then(response => {
+        if (response.status >= 200 && response.status < 300){
+            window.location.href = 'index_alunos.html'
+        }
+        else{
+            console.log(response.status)
+        }
+    })
+        .catch(error => console.log)
+}
+
 
 async function apagarAgendamento(id) {
     const config = {
@@ -56,6 +125,13 @@ function adicionar_agendamento_lista(agenda){
 
     btndelete.innerHTML = `<button class="btn btn-danger" onclick="apagarAgendamento(${agenda.id})"><i class="fa-solid fa-trash"></i></button>`
     btnmodificar.innerHTML = `<button class="btn btn-warning" onclick="iniciarModificarExercicio(${agenda.id})"><i class="fa-solid fa-pen-to-square"></i></button>`
+
+    btnmodificar.onclick = function(){
+        var display = document.getElementById('formulario').style.display;
+            if(display == "none")
+                document.getElementById('formulario').style.display = 'block';
+            else
+                document.getElementById('formulario').style.display = 'none';}
 
     teste.appendChild(item1)
     teste.appendChild(item2)
