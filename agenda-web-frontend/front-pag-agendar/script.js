@@ -16,7 +16,7 @@ async function salvar_agendamento(e){
     const nome = cx_nome.value
     const email = cx_email.value
     const data =  cx_data.value
-    const n_cll = cx_ncll.value
+    const n_cll = cx_n_cll.value
 
     const dados = {nome, email, data, n_cll}
     const init = {
