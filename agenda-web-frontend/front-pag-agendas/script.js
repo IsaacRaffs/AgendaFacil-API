@@ -88,8 +88,8 @@ async function apagarAgendamento(id) {
 
     await fetch(`${API_URL}${id}`, config).then(response => {
         if (response.status >= 200 && response.status < 300) {
-            alert('Excluído!')
             window.location.href = 'index.html'
+            alert('Excluído!')
         }
         else {
             alert('Falha ao tentar excluir.')
