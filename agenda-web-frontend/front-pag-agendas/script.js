@@ -56,7 +56,7 @@ async function modificarAgenda(id) {
     alert('sucesso')
 
     const options = {
-        method: 'put',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -66,7 +66,7 @@ async function modificarAgenda(id) {
 
     await fetch(`${API_URL}${id}`, options).then(response => {
         if (response.status >= 200 && response.status < 300){
-            window.location.href = 'index_alunos.html'
+            window.location.href = 'index.html'
         }
         else{
             console.log(response.status)
