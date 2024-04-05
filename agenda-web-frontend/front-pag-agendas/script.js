@@ -52,6 +52,7 @@ async function modificarAgenda(id) {
 
     const dados = { nome, email, data, n_cll }
     console.log(dados)
+    console.log(nome, email, data, n_cll )
 
     const options = {
         method: 'PUT',
@@ -60,7 +61,7 @@ async function modificarAgenda(id) {
         },
         body: JSON.stringify(dados),
     }
-
+    console.log(options)
     await fetch(`${API_URL}${id}`, options).then(response => {
         console.log(response.status)
         if (response.status >= 200 && response.status < 300){
