@@ -20,7 +20,7 @@ async function iniciarModificarAgenda(id) {
     if (response.status === 200) {
 
         const agenda = await response.json()
-
+        console.log(agenda.nome, agenda.email, agenda.data, agenda.n_cll)
         const nome = agenda.nome 
         const email = agenda.email
         const n_cll = agenda.n_cll
