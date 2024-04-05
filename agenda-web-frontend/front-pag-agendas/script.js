@@ -26,6 +26,7 @@ async function iniciarModificarAgenda(id) {
         const email = agenda.email
         const n_cll = agenda.n_cll
         const data  = agenda.data
+
         console.log(nome, email, data, n_cll)
 
         cx_nome.value = nome
@@ -33,7 +34,8 @@ async function iniciarModificarAgenda(id) {
         cx_data.value = data
         cx_n_cll.value = n_cll
 
-        
+        console.log(cx_nome.value, cx_email.value, cx_data.value, cx_n_cll.value)
+
         btn_cadastro.innerText = 'Atualizar'
         btn_cadastro.value = 'Atualizar'
 
