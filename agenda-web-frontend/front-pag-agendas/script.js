@@ -33,7 +33,7 @@ async function iniciarModificarAgenda(id) {
 
         
         btn_cadastro.innerText = 'Atualizar'
-        btn_cadastro.value = 'Atualizar Agenda'
+        btn_cadastro.value = 'Atualizar'
 
         btn_cadastro.setAttribute('onclick', `modificarAgenda(${id})`)
 
