@@ -65,7 +65,6 @@ async function modificarAgenda(id) {
         body: JSON.stringify(dados),
     }
 
-    console.log(response.status)
     await fetch(`${API_URL}${id}`, options).then(response => {
         if (response.status >= 200 && response.status < 300){
             window.location.href = 'index.html'
