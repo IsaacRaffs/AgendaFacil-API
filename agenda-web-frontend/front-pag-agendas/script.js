@@ -62,6 +62,7 @@ async function modificarAgenda(id) {
         body: JSON.stringify(dados),
     }
     console.log(options)
+    
     await fetch(`${API_URL}${id}`, options).then(response => {
         console.log(response.status)
         if (response.status >= 200 && response.status < 300){
