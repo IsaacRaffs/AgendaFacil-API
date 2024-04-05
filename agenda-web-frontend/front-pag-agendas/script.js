@@ -54,7 +54,7 @@ async function modificarAgenda(id) {
     console.log(dados)
 
     const options = {
-        method: 'put',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
