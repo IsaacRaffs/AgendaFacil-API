@@ -33,24 +33,49 @@
 
         </table>
     </section>
-    <form id="formulario" action="" style="display: none;">
-        <section>
-            <thead>
-                Nome:
-                <td><input id="cx-nome" type="text"></td>
-                <br>
-                Email:
-                <td><input id="cx-email" type="email" placeholder="Email..."></td>
-                <br>
-                Data:
-                <td><input id="cx-data" type="date"></td>
-                <br>
-                Telefone:
-                <td><input id="cx-n_cll" type="number"></td>
-                <br><br>
-                <input type="button" id="btncadastro" value="Salvar">
-            </thead>
-        </section>
+    <form id="formulario" action="">
+        <!--
+            cx-nome
+            cx-email
+            cx-data
+            cx-n_cll
+            btncadastro
+        -->
+        <div id="container">
+            <div class="row">
+                <div class="column-3 column label">
+                    <label for="cx-nome">Nome</label>
+                </div>
+                <div class="column-9 column input">
+                    <input type="text" id="cx-nome" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <label for="cx-email">Email</label>
+                </div>
+                <div class="column-9 column input">
+                    <input type="email" id="cx-email" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <label for="cx-data">Data</label>
+                </div>
+                <div class="column-9 column input">
+                    <input type="date" id="cx-data" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <label for="cx-n_cll">Telefone</label>
+                </div>
+                <div class="column-9 column input">
+                    <input type="number" id="cx-n_cll"/>
+                </div>
+            </div>
+            <input type="button" id="btncadastro" value="Salvar">
+        </div>
     </form>
     <br><br><br><br><br>
     <a href="https://agendafacil-api.vercel.app/front-pag-agendar/index.html"><button>Agendamento</button></a>
