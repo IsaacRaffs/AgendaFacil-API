@@ -124,7 +124,7 @@ function adicionar_agendamento_lista(agenda){
     item4.textContent = agenda.n_cll
 
     btndelete.innerHTML = `<button class="btn btn-danger" onclick="apagarAgendamento(${agenda.id})"><i class="fa-solid fa-trash"></i></button>`
-    btnmodificar.innerHTML = `<button class="btn btn-warning" onclick="iniciarModificarExercicio(${agenda.id})"><i class="fa-solid fa-pen-to-square"></i></button>`
+    btnmodificar.innerHTML = `<button class="btn btn-warning" onclick="iniciarModificarAgenda(${agenda.id})"><i class="fa-solid fa-pen-to-square"></i></button>`
 
     btnmodificar.onclick = function(){
         var display = document.getElementById('formulario').style.display;
