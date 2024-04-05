@@ -67,6 +67,7 @@ async function modificarAgenda(id) {
         console.log(response.status)
         if (response.status >= 200 && response.status < 300){
             window.location.href = 'index.html'
+            alert('Modificação realizada com sucesso!')
         }
         else{
             console.log(response.status)
