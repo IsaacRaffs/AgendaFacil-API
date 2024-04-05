@@ -56,7 +56,6 @@ async function modificarAgenda(id) {
 
     const dados = { nome, email, data, n_cll }
     console.log(dados)
-    alert('sucesso')
 
     const options = {
         method: 'PUT',
@@ -68,8 +67,10 @@ async function modificarAgenda(id) {
 
 
     await fetch(`${API_URL}${id}`, options).then(response => {
+        console.log(options)
         if (response.status >= 200 && response.status < 300){
             window.location.href = 'index.html'
+            console.log(response.status)
         }
         else{
             console.log(response.status)
