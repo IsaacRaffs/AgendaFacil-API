@@ -40,6 +40,7 @@ async function iniciarModificarAgenda(id) {
         btn_cadastro.value = 'Atualizar'
 
         btn_cadastro.setAttribute('onclick', `modificarAgenda(${id})`)
+        console.log(btn_cadastro)
 
     }
     else {
