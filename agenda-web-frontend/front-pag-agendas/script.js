@@ -20,14 +20,10 @@ async function iniciarModificarAgenda(id) {
     if (response.status === 200) {
         const agenda = await response.json()
         
-        console.log(agenda.nome, agenda.email, agenda.data, agenda.n_cll)
-        
         const nome = agenda.nome 
         const email = agenda.email
         const n_cll = agenda.n_cll
         const data  = agenda.data
-
-        console.log(nome, email, data, n_cll)
 
         cx_nome.value = nome
         cx_email.value = email
@@ -40,7 +36,6 @@ async function iniciarModificarAgenda(id) {
         btn_cadastro.value = 'Atualizar'
 
         btn_cadastro.setAttribute('onclick', `modificarAgenda(${id})`)
-        console.log(btn_cadastro)
 
     }
     else {
