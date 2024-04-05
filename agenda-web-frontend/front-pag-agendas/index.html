@@ -34,41 +34,21 @@
         </table>
     </section>
     <form id="formulario" action="" style="display: none;">
-        <div id="container">
-            <div class="row">
-                <div class="column-3 column label">
-                    <label for="cx-nome">Nome</label>
-                </div>
-                <div class="column-9 column input">
-                    <input type="text" id="cx-nome"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column-3 column label">
-                    <label for="cx-email">Email</label>
-                </div>
-                <div class="column-9 column input">
-                    <input type="email" id="cx-email"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column-3 column label">
-                    <label for="cx-data">Data</label>
-                </div>
-                <div class="column-9 column input">
-                    <input type="date" id="cx-data"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column-3 column label">
-                    <label for="cx-n_cll">Telefone</label>
-                </div>
-                <div class="column-9 column input">
-                    <input type="number" id="cx-n_cll"/>
-                </div>
-            </div>
-            <input type="button" id="btncadastro" value="Salvar">
-        </div>
+        <section>
+            <thead>
+                <label for="cx-nome">Nome: </label>
+                <input id="cx-nome" type="text" placeholder="Nome...">
+                <br><br>
+                <label for="cx-email">Email: </label>
+                <input id="cx-email" type="email" placeholder="Email...">
+                <br><br>
+                <label for="cx-data">Data: </label>
+                <input id="cx-data" type="date" placeholder="dd-mm-aaaa">
+                <br><br>
+                <label for="cx-n_cll">Telefone: </label>
+                <input id="cx-n_cll" type="number" placeholder="ex: 8640028922...">    
+            </thead>
+        </section>
     </form>
     <br><br><br><br><br>
     <a href="https://agendafacil-api.vercel.app/front-pag-agendar/index.html"><button>Agendamento</button></a>
