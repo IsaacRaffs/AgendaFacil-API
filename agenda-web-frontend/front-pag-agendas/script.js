@@ -26,6 +26,7 @@ async function iniciarModificarAgenda(id) {
         const email = agenda.email
         const n_cll = agenda.n_cll
         const data  = agenda.data
+        console.log(nome, email, data, n_cll)
 
         cx_nome.value = nome
         cx_email.value = email
