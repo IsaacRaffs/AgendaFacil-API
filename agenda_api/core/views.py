@@ -33,7 +33,7 @@ class DetailUpdateDeleteAlunos(APIView):
     
     def put(self, request, pk):
         alunos = self.get_object(pk)
-        serializer = ListaAgendamento(data=request.data)
+        serializer = ListaAgendamento(alunos, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=200)
