@@ -34,7 +34,7 @@ async function salvar_agendamento(e){
         cx_data.value = ''
         cx_ncll.value = ''
         console.log(response.status)
-        console.log('agendamento efetuado')
+        alert('Agendamento efetuado com sucesso!')
     }else{
         alert("erro ao salvar")
         console.log(response)
