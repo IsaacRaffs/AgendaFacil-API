@@ -9,9 +9,7 @@ input {
     border-radius: 50px;
     border-bottom: 5px;
 }
-button{
-    width: 60px;
-}
+
 #formulario{
     box-shadow: 5px 5px 5px 5px black;
     padding: 40px;
@@ -22,4 +20,7 @@ button{
     justify-content: center;
     margin: auto; 
     width: 70vh;
+}
+#btncadastro{
+    width: ;
 }
