@@ -34,8 +34,6 @@ async function salvar_agendamento(e){
         cx_data.value = ''
         cx_ncll.value = ''
         console.log(response.status)
-        const agendamento = await response.json()
-        adicionar_agendamento_lista(agendamento)
         console.log('agendamento efetuado')
     }else{
         alert("erro ao salvar")
