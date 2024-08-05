@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(0, 136, 255);
+        }
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        .thead-dark {
+            color: white;
+            background-color: black;
+        }
+    </style>
+    <title>PainelApiAdmin</title>
+</head>
+<body>
+    {% csrf_token %}
+    <h1>Painel Admin Api</h1>
+    <hr>
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agendaFutModal">
+        Painel AgendaFut
+    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agendaHairModal">
+        Painel AgendaHair
+    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sisoRapidoModal">
+        Painel SisoRapido
+    </button>
+  
+
+    <div class="modal fade" id="agendaFutModal" tabindex="-1" aria-labelledby="agendaFutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agendaFutModalLabel">AgendaFut</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Idade</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Campo</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaFut">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="agendaHairModal" tabindex="-1" aria-labelledby="agendaHairModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agendaHairModalLabel">AgendaHair</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Idade</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Data</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaHair">
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="sisoRapidoModal" tabindex="-1" aria-labelledby="sisoRapidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sisoRapidoModalLabel">SisoRapido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Idade</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Tipo de Tratamento</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaSiso">
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifyModalLabel">Modificar Agenda</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modifyForm">
+                        <div class="mb-3">
+                            <label for="cx-nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="cx-nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cx-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="cx-email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cx-idade" class="form-label">Idade</label>
+                            <input type="number" class="form-control" id="cx-idade">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cx-telefone" class="form-label">Telefone</label>
+                            <input type="text" class="form-control" id="cx-telefone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cx-data" class="form-label">Data</label>
+                            <input type="date" class="form-control" id="cx-data">
+                        </div>
+                        <button type="button" id="btncadastro" class="btn btn-primary">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const URL_AGENDA_FUT = 'http://127.0.0.1:8000/api/agendafut/';
+        const URL_AGENDA_HAIR = 'http://127.0.0.1:8000/api/agendahair/';
+        const URL_SISORAPIDO = 'http://127.0.0.1:8000/api/sisorapido/';
+
+        function getCSRFToken() {
+            const csrfCookie = document.cookie.split(';')
+                .map(cookie => cookie.trim())
+                .find(cookie => cookie.startsWith('csrftoken='));
+            return csrfCookie ? csrfCookie.split('=')[1] : '';
+        }
+
+        axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken();
+        console.log('CSRF token set:', getCSRFToken());
+
+        async function carregar_agendas(url, tabelaId) {
+            try {
+                const response = await axios.get(url);
+                if (response.status === 200) {
+                    const agendamentos = response.data;
+                    console.log(agendamentos);
+                    agendamentos.forEach(agenda => {
+                        switch (tabelaId) {
+                            case 'tabelaFut':
+                                adicionar_agendamento_lista_fut(agenda);
+                                break;
+                            case 'tabelaHair':
+                                adicionar_agendamento_lista_hair(agenda);
+                                break;
+                            case 'tabelaSiso':
+                                adicionar_agendamento_lista_siso(agenda);
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to fetch agendas', error);
+                console.log('Error details:', error.response.data);
+            }
+        }
+
+        function adicionar_agendamento_lista_fut(agenda) {
+            const tabela = document.getElementById('tabelaFut');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <th scope="row">${agenda.nome}</th>
+                <td>${agenda.email}</td>
+                <td>${agenda.idade}</td>
+                <td>${agenda.telefone}</td>
+                <td>${agenda.data}</td>
+                <td>${agenda.campo}</td>
+                <td><button class="btn btn-warning" onclick="iniciarModificarAgenda(${agenda.id}, 'tabelaFut')">MODIFICAR</button></td>
+                <td><button class="btn btn-danger" onclick="apagarAgendamento(${agenda.id}, 'tabelaFut')">DELETAR</button></td>
+            `;
+
+            tabela.appendChild(row);
+        }
+
+        function adicionar_agendamento_lista_hair(agenda) {
+            const tabela = document.getElementById('tabelaHair');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <th scope="row">${agenda.nome}</th>
+                <td>${agenda.email}</td>
+                <td>${agenda.idade}</td>
+                <td>${agenda.telefone}</td>
+                <td>${agenda.data}</td>
+                <td><button class="btn btn-warning" onclick="iniciarModificarAgenda(${agenda.id}, 'tabelaHair')">MODIFICAR</button></td>
+                <td><button class="btn btn-danger" onclick="apagarAgendamento(${agenda.id}, 'tabelaHair')">DELETAR</button></td>
+            `;
+
+            tabela.appendChild(row);
+        }
+
+        function adicionar_agendamento_lista_siso(agenda) {
+            const tabela = document.getElementById('tabelaSiso');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <th scope="row">${agenda.nome}</th>
+                <td>${agenda.email}</td>
+                <td>${agenda.idade}</td>
+                <td>${agenda.telefone}</td>
+                <td>${agenda.data}</td>
+                <td>${agenda.tipo_tratamento}</td>
+                <td><button class="btn btn-warning" onclick="iniciarModificarAgenda(${agenda.id}, 'tabelaSiso')">MODIFICAR</button></td>
+                <td><button class="btn btn-danger" onclick="apagarAgendamento(${agenda.id}, 'tabelaSiso')">DELETAR</button></td>
+            `;
+
+            tabela.appendChild(row);
+        }
+
+        async function apagarAgendamento(id, tabelaId) {
+            let url = getApiUrl(tabelaId);
+            try {
+                const response = await axios.delete(`${url}${id}`);
+
+                if (response.status >= 200 && response.status < 300) {
+                    alert('Excluído com sucesso!');
+                    window.location.reload();
+                } else {
+                    alert('Falha ao tentar excluir.');
+                }
+            } catch (error) {
+                console.error('Failed to delete agenda', error);
+                console.log('Error details:', error.response.data);
+            }
+        }
+
+        async function modificarAgenda(id, tabelaId) {
+            const nome = document.getElementById('cx-nome').value;
+            const email = document.getElementById('cx-email').value;
+            const idade = document.getElementById('cx-idade').value;
+            const telefone = document.getElementById('cx-telefone').value;
+            
+            const data = document.getElementById('cx-data').value;
+
+            const dados = { nome, email, idade, telefone, data };
+            console.log('Sending data:', dados);
+
+            let url = getApiUrl(tabelaId);
+            try {
+                const response = await axios.put(`${url}${id}`, dados);
+                console.log(data)
+                if (response.status >= 200 && response.status < 300) {
+                    alert('Modificação realizada com sucesso!');
+                    window.location.reload();
+                } else {
+                    alert(`Falha ao tentar modificar. Status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Failed to modify agenda', error);
+                console.log('Error details:', error.response.data);
+            }
+        }
+
+        async function iniciarModificarAgenda(id, tabelaId) {
+            let url = getApiUrl(tabelaId);
+            try {
+                const response = await axios.get(`${url}${id}`);
+                if (response.status === 200) {
+                    const agenda = response.data;
+
+                    document.getElementById('cx-nome').value = agenda.nome;
+                    document.getElementById('cx-email').value = agenda.email;
+                    document.getElementById('cx-idade').value = agenda.idade;
+                    document.getElementById('cx-telefone').value = agenda.telefone;
+                    document.getElementById('cx-data').value = agenda.data;
+
+                    const btnCadastro = document.getElementById('btncadastro');
+                    btnCadastro.innerText = 'Atualizar';
+                    btnCadastro.value = 'Atualizar';
+                    btnCadastro.onclick = () => modificarAgenda(id, tabelaId);
+
+                    new bootstrap.Modal(document.getElementById('modifyModal')).show();
+                } else {
+                    alert(`Erro ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Failed to fetch agenda for modification', error);
+                console.log('Error details:', error.response.data);
+            }
+        }
+
+        function main() {
+            console.log('main funcionando...');
+            carregar_agendas(URL_AGENDA_FUT, 'tabelaFut');
+            carregar_agendas(URL_AGENDA_HAIR, 'tabelaHair');
+            carregar_agendas(URL_SISORAPIDO, 'tabelaSiso');
+        }
+
+        function getApiUrl(tabelaId) {
+            switch (tabelaId) {
+                case 'tabelaFut':
+                    return URL_AGENDA_FUT;
+                case 'tabelaHair':
+                    return URL_AGENDA_HAIR;
+                case 'tabelaSiso':
+                    return URL_SISORAPIDO;
+                default:
+                    return URL_AGENDA_FUT;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', main);
+    </script>
+</body>
+</html>

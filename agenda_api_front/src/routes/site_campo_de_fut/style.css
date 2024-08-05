@@ -1,0 +1,25 @@
+*{
+    padding: 0px;
+}
+
+body {
+    background-image: url(https://i.pinimg.com/736x/b8/6e/2e/b86e2e21f14bb29b31f50327853b4687.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#main {
+    margin: 0; 
+    padding: 0;
+}
+
+h1{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    letter-spacing: 10px;   
+}
+
+img{
+    width: 500px;
+    height: 200px;
+}
