@@ -18,31 +18,40 @@
             color: white;
             background-color: black;
         }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
     </style>
-    <title>PainelApiAdmin</title>
+    <title>Painel de Administração</title>
 </head>
 <body>
     {% csrf_token %}
-    <h1>Painel Admin Api</h1>
+    <h1>Painel de Administração</h1>
     <hr>
 
+    <form method="post" action="{% url 'account_logout' %}" class="logout-button">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agendaFutModal">
-        Painel AgendaFut
+        Painel Agenda Fut
     </button>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agendaHairModal">
-        Painel AgendaHair
+        Painel Agenda Hair
     </button>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sisoRapidoModal">
-        Painel SisoRapido
+        Painel Siso Rápido
     </button>
   
-
+    
     <div class="modal fade" id="agendaFutModal" tabindex="-1" aria-labelledby="agendaFutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="agendaFutModalLabel">AgendaFut</h5>
+                    <h5 class="modal-title" id="agendaFutModalLabel">Agenda Fut</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -57,7 +66,6 @@
                                 <th scope="col">Campo</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
-                                
                             </tr>
                         </thead>
                         <tbody id="tabelaFut">
@@ -68,12 +76,12 @@
         </div>
     </div>
 
-
+    
     <div class="modal fade" id="agendaHairModal" tabindex="-1" aria-labelledby="agendaHairModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="agendaHairModalLabel">AgendaHair</h5>
+                    <h5 class="modal-title" id="agendaHairModalLabel">Agenda Hair</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -90,7 +98,6 @@
                             </tr>
                         </thead>
                         <tbody id="tabelaHair">
-                        
                         </tbody>
                     </table>
                 </div>
@@ -98,12 +105,12 @@
         </div>
     </div>
 
-
+    
     <div class="modal fade" id="sisoRapidoModal" tabindex="-1" aria-labelledby="sisoRapidoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="sisoRapidoModalLabel">SisoRapido</h5>
+                    <h5 class="modal-title" id="sisoRapidoModalLabel">Siso Rápido</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -121,46 +128,8 @@
                             </tr>
                         </thead>
                         <tbody id="tabelaSiso">
-                        
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modifyModalLabel">Modificar Agenda</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="modifyForm">
-                        <div class="mb-3">
-                            <label for="cx-nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="cx-nome">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cx-email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="cx-email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cx-idade" class="form-label">Idade</label>
-                            <input type="number" class="form-control" id="cx-idade">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cx-telefone" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" id="cx-telefone">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cx-data" class="form-label">Data</label>
-                            <input type="date" class="form-control" id="cx-data">
-                        </div>
-                        <button type="button" id="btncadastro" class="btn btn-primary">Atualizar</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -184,7 +153,7 @@
         async function carregar_agendas(url, tabelaId) {
             try {
                 const response = await axios.get(url);
-                if (response.status === 200) {
+                if (response.status === 200 && response.data) {
                     const agendamentos = response.data;
                     console.log(agendamentos);
                     agendamentos.forEach(agenda => {
@@ -202,10 +171,14 @@
                                 break;
                         }
                     });
+                } else {
+                    console.error('Response data is undefined or empty.');
                 }
             } catch (error) {
                 console.error('Failed to fetch agendas', error);
-                console.log('Error details:', error.response.data);
+                if (error.response) {
+                    console.log('Error details:', error.response.data);
+                }
             }
         }
 
@@ -262,99 +235,19 @@
             tabela.appendChild(row);
         }
 
-        async function apagarAgendamento(id, tabelaId) {
-            let url = getApiUrl(tabelaId);
-            try {
-                const response = await axios.delete(`${url}${id}`);
-
-                if (response.status >= 200 && response.status < 300) {
-                    alert('Excluído com sucesso!');
-                    window.location.reload();
-                } else {
-                    alert('Falha ao tentar excluir.');
-                }
-            } catch (error) {
-                console.error('Failed to delete agenda', error);
-                console.log('Error details:', error.response.data);
-            }
+        function iniciarModificarAgenda(id, tabelaId) {
+            console.log('Modificação solicitada para ID:', id, 'na tabela:', tabelaId);
         }
 
-        async function modificarAgenda(id, tabelaId) {
-            const nome = document.getElementById('cx-nome').value;
-            const email = document.getElementById('cx-email').value;
-            const idade = document.getElementById('cx-idade').value;
-            const telefone = document.getElementById('cx-telefone').value;
-            
-            const data = document.getElementById('cx-data').value;
-
-            const dados = { nome, email, idade, telefone, data };
-            console.log('Sending data:', dados);
-
-            let url = getApiUrl(tabelaId);
-            try {
-                const response = await axios.put(`${url}${id}`, dados);
-                console.log(data)
-                if (response.status >= 200 && response.status < 300) {
-                    alert('Modificação realizada com sucesso!');
-                    window.location.reload();
-                } else {
-                    alert(`Falha ao tentar modificar. Status: ${response.status}`);
-                }
-            } catch (error) {
-                console.error('Failed to modify agenda', error);
-                console.log('Error details:', error.response.data);
-            }
+        function apagarAgendamento(id, tabelaId) {
+            console.log('Solicitação para apagar ID:', id, 'da tabela:', tabelaId);
         }
 
-        async function iniciarModificarAgenda(id, tabelaId) {
-            let url = getApiUrl(tabelaId);
-            try {
-                const response = await axios.get(`${url}${id}`);
-                if (response.status === 200) {
-                    const agenda = response.data;
-
-                    document.getElementById('cx-nome').value = agenda.nome;
-                    document.getElementById('cx-email').value = agenda.email;
-                    document.getElementById('cx-idade').value = agenda.idade;
-                    document.getElementById('cx-telefone').value = agenda.telefone;
-                    document.getElementById('cx-data').value = agenda.data;
-
-                    const btnCadastro = document.getElementById('btncadastro');
-                    btnCadastro.innerText = 'Atualizar';
-                    btnCadastro.value = 'Atualizar';
-                    btnCadastro.onclick = () => modificarAgenda(id, tabelaId);
-
-                    new bootstrap.Modal(document.getElementById('modifyModal')).show();
-                } else {
-                    alert(`Erro ${response.status}`);
-                }
-            } catch (error) {
-                console.error('Failed to fetch agenda for modification', error);
-                console.log('Error details:', error.response.data);
-            }
-        }
-
-        function main() {
-            console.log('main funcionando...');
+        document.addEventListener("DOMContentLoaded", function() {
             carregar_agendas(URL_AGENDA_FUT, 'tabelaFut');
             carregar_agendas(URL_AGENDA_HAIR, 'tabelaHair');
             carregar_agendas(URL_SISORAPIDO, 'tabelaSiso');
-        }
-
-        function getApiUrl(tabelaId) {
-            switch (tabelaId) {
-                case 'tabelaFut':
-                    return URL_AGENDA_FUT;
-                case 'tabelaHair':
-                    return URL_AGENDA_HAIR;
-                case 'tabelaSiso':
-                    return URL_SISORAPIDO;
-                default:
-                    return URL_AGENDA_FUT;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', main);
+        });
     </script>
 </body>
 </html>

@@ -1,0 +1,93 @@
+{% extends "account/base_entrance.html" %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+{% block content %}
+    <style>
+        p, h1{
+            text-align: center;
+        }
+        .custom-signup-title {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .custom-signup-form {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .custom-signup-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .custom-signup-button:hover {
+            background-color: #45a049;
+        }
+
+        .custom-signup-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .custom-signup-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    {% element h1 class="custom-signup-title" %}
+        {% trans "Sign Up" %}
+    {% endelement %}
+    {% setvar link %}
+        <a href="{{ login_url }}" class="custom-signup-link">
+        {% endsetvar %}
+        {% setvar end_link %}
+        </a>
+    {% endsetvar %}
+    {% element p %}
+        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+    {% endelement %}
+    
+    {% if not SOCIALACCOUNT_ONLY %}
+        <form id="signupForm" class="custom-signup-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ redirect_field }}
+            <button type="submit" class="custom-signup-button">{% trans "Sign Up" %}</button>
+        </form>
+    {% endif %}
+    
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            let form = e.target;
+            let formData = new FormData(form);
+            axios.post(form.action, formData)
+                .then(function (response) {
+                    window.location.href = "{{ redirect_field }}";
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    alert('Houve um erro no envio do formulário. Por favor, tente novamente.');
+                });
+        });
+    </script>
+{% endblock content %}

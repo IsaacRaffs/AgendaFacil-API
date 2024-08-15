@@ -3,7 +3,7 @@
 import os
 import sys
 
-sys.path.append('\\Users\\Usuario\\Desktop\\Learning\\projetos\\AgendaApi - fullstack\\backend\\\\backend\\env\\Lib\\site-packages\\')
+sys.path.append('\\Users\\Usuario\\Desktop\\Learning\\projetos\\AgendaApi-fullstack\\AgendaFacil-API-ifpi-2024\\backend\\backend\\env\\Lib\\site-packages\\')
 
 def main():
     """Run administrative tasks."""

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import User
 
 class AgendaFutSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +16,4 @@ class SisoRapidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = SisoRapidoModel
         fields = '__all__'
+

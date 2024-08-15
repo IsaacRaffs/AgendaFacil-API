@@ -19,6 +19,8 @@ class AgendaFutModel(models.Model):
     CAMPO_CHOICES = (
         ("C1", "Campo 1"),
         ("C2", "Campo 2"),
+        ("C3", "Campo 3"),
+        ("C4", "Campo 4"),
     )
     nome = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=200, blank=True, null=False)

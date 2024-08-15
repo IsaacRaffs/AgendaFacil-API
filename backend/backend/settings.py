@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'drf_yasg',
-
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -70,7 +73,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -137,3 +141,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/api/paineladmin'
+
+# Configurações de e-mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Substitua pelo host do servidor SMTP
+EMAIL_PORT = 587  # Substitua pela porta do servidor SMTP (587 para TLS, 465 para SSL, 25 para não criptografado)
+EMAIL_USE_TLS = True  # Use TLS (True) ou SSL (False) de acordo com a configuração do servidor
+EMAIL_USE_SSL = False  # Se usar SSL, defina como True e EMAIL_PORT deve ser 465
+EMAIL_HOST_USER = 'isaacrafaelmoraes.dev@gmail.com'  # Seu endereço de e-mail
+EMAIL_HOST_PASSWORD = 'oeqr kspl uhfy cwrt'  # Senha do seu e-mail
+DEFAULT_FROM_EMAIL = 'isaacrafaelmoraes.dev@gmail.com'  # E-mail padrão de envio
+
+# AUTHENTICATION_BACKENDS = (
+#     'member.backends.EmailPasswordBackend'
+# )

@@ -16,5 +16,5 @@ urlpatterns = [
     path('api/sisorapido/<int:pk>', RetrieveUpdateDestroy_SisoRapido.as_view()),
 
     #   PAINEL ADMIN
-    path('paineladmin', PainelAdmin),
+    path('api/paineladmin', PainelAdmin),
 ]

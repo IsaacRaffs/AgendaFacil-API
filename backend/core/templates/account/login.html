@@ -1,0 +1,126 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+    <style>
+        h1{
+            text-align: center;
+        }
+        .custom-signin-title {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .custom-signin-form {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .custom-signin-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .custom-signin-button:hover {
+            background-color: #45a049;
+        }
+
+        .custom-signup-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .custom-signup-link:hover {
+            text-decoration: underline;
+        }
+
+        .custom-separator {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+
+    {% element h1 class="custom-signin-title" %}
+        {% trans "Sign In" %}
+    {% endelement %}
+
+    {% if not SOCIALACCOUNT_ONLY %}
+        {% setvar link %}
+            <a href="{{ signup_url }}" class="custom-signup-link">
+        {% endsetvar %}
+        {% setvar end_link %}
+            </a>
+        {% endsetvar %}
+        {% element p %}
+            {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
+        {% endelement %}
+        
+        <form id="signinForm" class="custom-signin-form" method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ redirect_field }}
+            <button type="submit" class="custom-signin-button">{% trans "Sign In" %}</button>
+        </form>
+    {% endif %}
+    
+    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+        <hr class="custom-separator">
+        <div class="button-group">
+            {% if PASSKEY_LOGIN_ENABLED %}
+                <button type="submit" form="mfa_login" id="passkey_login" class="custom-signin-button">
+                    {% trans "Sign in with a passkey" %}
+                </button>
+            {% endif %}
+            {% if LOGIN_BY_CODE_ENABLED %}
+                <a href="{{ request_login_code_url }}" class="custom-signin-button">
+                    {% trans "Mail me a sign-in code" %}
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+    
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('signinForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede o envio tradicional do formulário
+
+            let form = e.target;
+            let formData = new FormData(form);
+
+            axios.post(form.action, formData)
+                .then(function (response) {
+                    // Sucesso: Redirecionar ou exibir uma mensagem
+                    window.location.href = "{{ redirect_field }}";
+                })
+                .catch(function (error) {
+                    // Erro: Lidar com erros e exibir mensagens ao usuário
+                    console.error(error);
+                    alert('Houve um erro no envio do formulário. Por favor, tente novamente.');
+                });
+        });
+    </script>
+{% endblock content %}
+{% block extra_body %}
+    {{ block.super }}
+    {% if PASSKEY_LOGIN_ENABLED %}
+        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
+    {% endif %}
+{% endblock %}

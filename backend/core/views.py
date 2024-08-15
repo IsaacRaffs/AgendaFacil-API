@@ -5,9 +5,10 @@ from rest_framework.generics import (
     )
 from .models import *
 from .serializers import *
+from django.contrib.auth.models import User
 
-#   CLIENTE API VIEW
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 #   AGENDA_FUT API VIEW
 class ListCreate_AgendaFut(ListCreateAPIView):
@@ -38,7 +39,10 @@ class RetrieveUpdateDestroy_SisoRapido(RetrieveUpdateDestroyAPIView):
 
 
 #   ADMINISTRAÇÃO INTERNA
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def PainelAdmin(request):
+    [IsAuthenticated]
     agendafut = AgendaFutModel.objects.all()
     agendahair = AgendaHairModel.objects.all()
     sisorapido = SisoRapidoModel.objects.all()
