@@ -1,11 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
+
 import axios from 'axios';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
 const api_url = 'http://127.0.0.1:8000/api/agendafut/'
 
 function CampoDeFutebol() {
@@ -27,17 +31,37 @@ function CampoDeFutebol() {
     setData({ ...data, [e.target.name]: e.target.value })
   };
 
+
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post(api_url, {
+    if(data.dnome == '' || data.demail == '' || data.didade == '' || data.dtelefone == '' || data.ddata == ''){
+      alert("Preencha todos os campos")
+      return
+    }
+    else{
+      axios.post(api_url, {
         nome: data.dnome,
         email: data.demail,
         telefone: data.dtelefone,
         idade: data.didade,
         campo: data.dcampo,
         data: data.ddata,
-    }).then(response => console.log(response)).catch(err => console.log(err));
+    }).then(response => alert("Agendamento realizado com sucesso")).catch(err => console.log(err));
+    
+    
+    const templateParams = {
+      from_name: data.dnome,
+      email: data.demail,
+    }
+
+    emailjs.send("service_v8s0vkk", "template_kuyy39a", templateParams, "C2-NcjFrxjW8HG_jI")
+    .then((response) =>{
+      console.log("email enviado", response.status, response.text)
+    })
+  
   }
+
+  } 
   return (
     <>
       <h1>AGENDAFUT</h1>
