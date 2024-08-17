@@ -9,6 +9,11 @@ from django.contrib.auth.models import User
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
+
+#   ABOUT US
+def about_page(request):
+    return render(request, 'about_index.html')
 
 #   AGENDA_FUT API VIEW
 class ListCreate_AgendaFut(ListCreateAPIView):

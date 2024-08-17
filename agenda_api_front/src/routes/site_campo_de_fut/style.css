@@ -1,25 +1,86 @@
-*{
-    padding: 0px;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-image: url(https://i.pinimg.com/736x/b8/6e/2e/b86e2e21f14bb29b31f50327853b4687.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: Arial, sans-serif;
 }
 
 #main {
-    margin: 0; 
-    padding: 0;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-h1{
+#agendas-body {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
     text-align: center;
-    color: rgb(255, 255, 255);
-    letter-spacing: 10px;   
+    color: white;
+    letter-spacing: 10px;
 }
 
-img{
-    width: 500px;
-    height: 200px;
+img {
+    width: 100%;
+    height: auto;
+}
+
+label {
+    font-size: 2.5vh;
+    margin-bottom: 10px;
+}
+
+button{
+    width: 40%;
+}
+button:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+select, input {
+    width: 100%;
+    max-width: 500px;
+    font-size: 2.5vh    ;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+    label {
+        font-size: 3vh;
+    }
+
+    select, input {
+        font-size: 3vh;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    label {
+        font-size: 4vh;
+    }
+
+    select, input {
+        font-size: 4vh;
+    }
+}
+
+.col-3 {
+    flex: 1 1 300px;
+    max-width: 300px;
+    margin: 10px;
 }

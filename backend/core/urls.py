@@ -3,6 +3,9 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+    #   ABOUT US
+   # path('', about_page),
+
     #   AGENDA_FUT API VIEW
     path('api/agendafut/', ListCreate_AgendaFut.as_view()),
     path('api/agendafut/<int:pk>', RetrieveUpdateDestroy_AgendaFut.as_view()),

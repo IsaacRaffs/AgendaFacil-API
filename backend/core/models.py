@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime    
+import datetime
 
 
 class Admin(models.Model):
@@ -27,7 +28,7 @@ class AgendaFutModel(models.Model):
     telefone = models.IntegerField(null=True, blank=True)
     idade = models.IntegerField(null=True, blank=True)
     campo = models.CharField(max_length=400, choices=CAMPO_CHOICES, default='C1')
-    data = models.DateField(default=datetime.now, blank=True, null=True)
+    data = models.DateField(default=datetime.date.today, blank=True, null=True)
 
 
 
@@ -46,7 +47,7 @@ class AgendaHairModel(models.Model):
     email = models.EmailField(max_length=200, blank=True, null=False)
     telefone = models.IntegerField(null=True, blank=True)
     idade = models.IntegerField(null=True, blank=True)
-    data = models.DateField(default=datetime.now, blank=True, null=True)
+    data = models.DateField(default=datetime.date.today, blank=True, null=True)
 
 
     #   chave estrangeira
@@ -69,7 +70,7 @@ class SisoRapidoModel(models.Model):
     email = models.EmailField(max_length=200, blank=True, null=False)
     telefone = models.IntegerField(null=True, blank=True)
     idade = models.IntegerField(null=True, blank=True)
-    data = models.DateField(default=datetime.now, blank=True, null=True)
+    data = models.DateField(default=datetime.date.today, blank=True, null=True)
 
     tipo_tratamento = models.CharField(max_length=400, choices=TRATAMENTO_CHOICES, default='LIMPEZA')
     
