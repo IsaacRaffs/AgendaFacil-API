@@ -1,0 +1,198 @@
+/* Reset básico e configuração de box-sizing */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Estilização do body com imagem de fundo e gradiente */
+body {
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    background-color: #2e75c2;
+}
+
+/* Fundo com imagem e gradiente */
+/* body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-size: cover, auto;
+    background-position: center, bottom;
+    z-index: -1; /* Garante que o conteúdo fique acima do fundo */
+
+
+/* Animação de ondas no fundo */
+@keyframes waveAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none"%3E%3Cpath d="M0,0 C150,60 250,70 400,30 C550,-10 650,10 800,60 C950,110 1100,100 1200,60 L1200,100 L0,100 Z" fill="%23ffffff" /%3E%3C/svg%3E') repeat-x;
+    animation: waveAnimation 30s linear infinite;
+    z-index: -1; /* Coloca o elemento atrás de outros conteúdos */
+}
+
+/* Outros estilos */
+h1 {
+    text-align: center;
+    color: #5a5a5a; /* Cor de texto cinza escuro */
+    letter-spacing: 2px;
+    margin: 40px 0;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+/* Estilização do botão */
+button {
+    background-color: #6c757d; /* Cor de fundo cinza escuro */
+    color: #fff; /* Texto branco */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #5a6268; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05);
+}
+
+li {
+    text-align: justify;
+}
+
+li:hover {
+    background-color: rgb(65, 65, 255);
+    transform: scale(1.05);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* Estilização do modal */
+.modal-content {
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Estilização dos campos de formulário */
+input, select {
+    width: 100%;
+    max-width: 500px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+input:focus, select:focus {
+    border-color: #6c757d;
+    background-color: #fff;
+}
+
+/* Estilização dos cards */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.card-text {
+    text-align: justify;
+    font-size: 1rem;
+    padding: 0 10px;
+    color: #666;
+}
+
+.card img {
+    object-fit: cover;
+    height: 180px;
+    width: 100%;
+    filter: brightness(0.8);
+    transition: all 0.3s ease;
+}
+
+.card img:hover {
+    filter: brightness(1);
+    transform: scale(1.03);
+}
+
+/* Estilização do Navbar */
+.navbar {
+    background-color: #007bff; /* Cor de fundo azul */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    padding: 0 15px;
+    color: #ffffff;
+}
+
+.nav-link:hover {
+    color: #d1e7fd; /* Cor clara ao passar o mouse */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba(255,255,255,.5)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h20M5 15h20M5 23h20"/%3E%3C/svg%3E');
+}
+
+/* Adiciona espaçamento entre seções */
+.section {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#subtitulo {
+    padding: 20px;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px;
+}
+        

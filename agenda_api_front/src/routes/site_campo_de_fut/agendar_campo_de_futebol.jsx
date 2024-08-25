@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
+import * as style from './style_campo.css';
 
 import axios from 'axios';
 import { useState } from 'react';
