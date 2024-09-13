@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-i+!tp%u-s=_(ct7o=*=tisbq0cw(w+bid^fh(=_=z5v_11su#7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agendafacil-api-w8z2.onrender.com']
 
 #
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:8000",
+    'https://agendafacil-api-w8z2.onrender.com',
 ]
 #
 CORS_ALLOW_ALL_ORIGINS = True
