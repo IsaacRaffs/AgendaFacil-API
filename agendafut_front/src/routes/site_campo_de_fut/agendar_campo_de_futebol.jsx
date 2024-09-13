@@ -10,7 +10,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const api_url = 'http://127.0.0.1:8000/api/agendafut/'
+const api_url = 'https://agendafacil-api-w8z2.onrender.com/api/agendafut/'
 
 function CampoDeFutebol() {
   const [data, setData] = useState({

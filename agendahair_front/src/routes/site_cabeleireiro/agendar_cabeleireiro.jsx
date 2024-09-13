@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-const api_url = 'http://127.0.0.1:8000/api/agendahair/';
+const api_url = 'https://agendafacil-api-w8z2.onrender.com/api/agendahair/';
 
 const Cabeleireiro = () => {
   const [data, setData] = useState({
