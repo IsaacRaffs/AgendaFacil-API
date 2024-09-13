@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i+!tp%u-s=_(ct7o=*=tisbq0cw(w+bid^fh(=_=z5v_11su#7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '']
 
 #
 CORS_ALLOWED_ORIGINS = [
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -94,9 +95,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "agenda_api",
+        "USER": "admin",
+        "PASSWORD": "o8fnAWdZRGs8l6zdwciyBuYz6rb96TLu",
+        "HOST": "dpg-crhoqj5umphs73c6qah0-a.oregon-postgres.render.com",
+        "PORT": "5432",
     }
 }
 

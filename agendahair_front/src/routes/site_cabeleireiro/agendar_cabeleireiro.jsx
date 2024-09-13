@@ -72,7 +72,7 @@ const Cabeleireiro = () => {
 
       <div className="section">
         <h1>Agenda Hair</h1>
-        <p id='subtitulo'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus exercitationem doloribus alias commodi, similique veritatis et, amet corrupti est dolore id nulla praesentium? Sint praesentium quibusdam corporis ducimus dolor quaerat!</p>
+        <p id='subtitulo'>Quer facilidade no agendamento?<br /> Conheça o nosso agendamento de cabeleireiro web!</p>
         <div className="d-flex justify-content-center mb-4">
           <Button className="btn" style={{ backgroundColor: "#007bff", borderColor: "#007bff", maxWidth: "800px" }} onClick={handleShow}>
             Agendar
@@ -173,9 +173,9 @@ const Cabeleireiro = () => {
       <br />  
       <div className="section" id="contact">
         <h2>Localização</h2>
-        <p>Rua Exemplo, 123 - Centro, Cidade - Estado</p>
-        <p>Telefone: (00) 1234-5678</p>
-        <p>Email: contato@cabeleireiro.com.br</p>
+        <p>Rua Ceára, 123 - Centro, Teresina - Piauí</p>
+        <p>Telefone: (86) 3222-2121</p>
+        <p>Email: agendahair@cabeleireiro.com.br</p>
       </div>
     </>
   );
