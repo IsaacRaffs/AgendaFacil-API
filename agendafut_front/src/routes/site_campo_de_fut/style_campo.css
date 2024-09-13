@@ -8,6 +8,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial, sans-serif;
+    background-image: url(https://i.pinimg.com/736x/b8/6e/2e/b86e2e21f14bb29b31f50327853b4687.jpg);
 }
 
 #main {
@@ -28,7 +29,6 @@ body {
 
 h1 {
     text-align: center;
-    color: white;
     letter-spacing: 10px;
 }
 

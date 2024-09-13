@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style_cabelo.css';
+import './style_cabelo.css'
 
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
@@ -46,9 +46,10 @@ const Cabeleireiro = () => {
       const templateParams = {
         from_name: data.nome,
         email: data.email,
+        data_: data.data,
       };
 
-      emailjs.send("service_v8s0vkk", "template_kuyy39a", templateParams, "C2-NcjFrxjW8HG_jI")
+      emailjs.send("service_v8s0vkk", "template_4pclpqf", templateParams, "C2-NcjFrxjW8HG_jI")
         .then((response) => {
           console.log("email enviado", response.status, response.text);
         });
@@ -58,7 +59,7 @@ const Cabeleireiro = () => {
   return (
     <>
       <Navbar bg="primary" variant="dark" expand="lg">
-        <Navbar.Brand href="#home">Cabeleireiro</Navbar.Brand>
+        <Navbar.Brand href="#home">AgendaHair</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -70,7 +71,7 @@ const Cabeleireiro = () => {
       </Navbar>
 
       <div className="section">
-        <h1>Agendamento Cabeleireiro</h1>
+        <h1>Agenda Hair</h1>
         <p id='subtitulo'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus exercitationem doloribus alias commodi, similique veritatis et, amet corrupti est dolore id nulla praesentium? Sint praesentium quibusdam corporis ducimus dolor quaerat!</p>
         <div className="d-flex justify-content-center mb-4">
           <Button className="btn" style={{ backgroundColor: "#007bff", borderColor: "#007bff", maxWidth: "800px" }} onClick={handleShow}>
@@ -96,111 +97,45 @@ const Cabeleireiro = () => {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+1"
-              alt="Produto 1"
+              src="https://619028l.ha.azioncdn.net/img/2024/03/produto/26907/smaak-canela.jpg?ims=400x400"
+              alt="Kit Óleo e Balm para Barba Smaak Canela & Rum Embaixador"
             />
             <Carousel.Caption>
-              <h3>Produto 1</h3>
+              <h3>Kit Óleo e Balm para Barba Smaak Canela & Rum Embaixador</h3>
               <p>Descrição do Produto 1</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+2"
-              alt="Produto 2"
+              src="https://619028l.ha.azioncdn.net/img/2024/03/produto/26908/smaak-lemon.jpg?ims=400x400"
+              alt="Kit Óleo e Balm para Barba Smaak Canela & Rum Embaixador"
             />
             <Carousel.Caption>
-              <h3>Produto 2</h3>
+              <h3>Kit Óleo e Balm para Barba Smaak Canela & Rum Embaixador</h3>
               <p>Descrição do Produto 2</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+3"
-              alt="Produto 3"
+              src="https://619028l.ha.azioncdn.net/img/2024/03/produto/26856/barberpole.jpg?ims=400x400"
+              alt="Capa de Corte Barbeiro e Cabeleireiro Estampada 1,82 metros Barbershop Pole"
             />
             <Carousel.Caption>
-              <h3>Produto 3</h3>
+              <h3>Capa de Corte Barbeiro e Cabeleireiro Estampada 1,82 metros Barbershop Pole</h3>
               <p>Descrição do Produto 3</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+4"
-              alt="Produto 4"
+              src="https://619028l.ha.azioncdn.net/img/2024/05/produto/27063/tj-60capa.jpg?ims=400x400"
+              alt="Tesoura Para Cortar Cabelo"
             />
             <Carousel.Caption>
-              <h3>Produto 4</h3>
+              <h3>Tesoura Para Cortart Cabelo</h3>
               <p>Descrição do Produto 4</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+5"
-              alt="Produto 5"
-            />
-            <Carousel.Caption>
-              <h3>Produto 5</h3>
-              <p>Descrição do Produto 5</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+6"
-              alt="Produto 6"
-            />
-            <Carousel.Caption>
-              <h3>Produto 6</h3>
-              <p>Descrição do Produto 6</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+7"
-              alt="Produto 7"
-            />
-            <Carousel.Caption>
-              <h3>Produto 7</h3>
-              <p>Descrição do Produto 7</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+8"
-              alt="Produto 8"
-            />
-            <Carousel.Caption>
-              <h3>Produto 8</h3>
-              <p>Descrição do Produto 8</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+9"
-              alt="Produto 9"
-            />
-            <Carousel.Caption>
-              <h3>Produto 9</h3>
-              <p>Descrição do Produto 9</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://via.placeholder.com/800x400.png?text=Produto+10"
-              alt="Produto 10"
-            />
-            <Carousel.Caption>
-              <h3>Produto 10</h3>
-              <p>Descrição do Produto 10</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

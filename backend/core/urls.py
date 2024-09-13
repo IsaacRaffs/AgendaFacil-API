@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     #   ABOUT US
-   # path('', about_page),
+    path('', about_page),
 
     #   AGENDA_FUT API VIEW
     path('api/agendafut/', ListCreate_AgendaFut.as_view()),
